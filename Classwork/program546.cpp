@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////
 //
-//  program name 	:- program534.cpp
+//  program name 	:- program546.cpp
 //  Description 	:- CVFS project (Auxillary Data)
 //  Author       	:- Prajwal Sanjay Pansare
 //  Date 			:- 13/01/2026
@@ -255,6 +255,66 @@ void StartAuxillaryDataInitilisation()
 
 //////////////////////////////////////////////////////////////
 //
+//  Function name 	: DisplayHelp
+//  Description 	: It is used to Dsplay the help page.
+//  Author       	: Prajwal Sanjay Pansare
+//  Date 			: 14/01/2026
+//
+//////////////////////////////////////////////////////////////
+
+void DisplayHelp()
+{
+    printf("--------------------------------------------------\n");
+    printf("------ Marvellous CVFS started successfully ------\n");
+    printf("--------------------------------------------------\n");
+    
+    printf("man    : It is used to display manual page.\n");
+    printf("clear  : It is used to clear the terminal\n");
+    printf("create : It is used to create the new file\n");
+    printf("write  : It is used to write the data into file\n");
+    printf("read   : It is used to read the data from the file\n");
+    printf("stat   : It is used to display statistical information\n");
+    printf("unlink : It is used to delete the file\n");
+    printf("exit   : It is used to terminate Marvellous CVFS\n");
+    
+    printf("--------------------------------------------------\n");
+}
+
+//////////////////////////////////////////////////////////////
+//
+//  Function name 	: ManPageDisplay
+//  Description 	: It is used to Display man page.
+//  Author       	: Prajwal Sanjay Pansare
+//  Date 			: 14/01/2026
+//
+//////////////////////////////////////////////////////////////
+
+void ManPageDisplay(char Name[])
+{
+    if(strcmp("ls",Name) == 0)
+    {
+        printf("About : It is used to list the names of all files\n");
+        printf("Usage : ls\n");
+    }
+    else if(strcmp("man",Name) == 0)
+    {
+        printf("About : It is used to display manual page\n");
+        printf("Usage : man command_name\n");
+        printf("Command_Name : It is the name of command\n");
+    }
+    else if(strcmp("exit",Name) == 0)
+    {
+        printf("About : It is used to terminate the shell\n");
+        printf("Usage : exit\n");
+    }
+    else
+    {
+        printf("No manual entry for %s\n",Name);
+    }
+}
+
+//////////////////////////////////////////////////////////////
+//
 //      Entry Point function of the project
 //
 //////////////////////////////////////////////////////////////
@@ -262,7 +322,7 @@ void StartAuxillaryDataInitilisation()
 int main()
 {
     char str[80] = {'\0'};
-    char Command[4][20];
+    char Command[5][20] = {{'\0'}};
     int iCount = 0;
     
     StartAuxillaryDataInitilisation();
@@ -271,17 +331,60 @@ int main()
     printf("------ Marvellous CVFS started successfully ------\n");
     printf("--------------------------------------------------\n");
 
+    //  Infinite Listening Shell
     while(1)
     {
-        fflush(stdin);
+        fflush(stdin);          
 
         strcpy(str,"");
 
-        printf("\nMarvellous CVFS : >");
-        fgets(str,sizeof(str),stdin);       //  scanf("%s",str);
-        
-    }
+        printf("\nMarvellous CVFS : > ");
+        fgets(str,sizeof(str),stdin);
+
+        iCount = sscanf(str,"%s %s %s %s %s",Command[0],Command[1],Command[2],Command[3],Command[4]);
+
+        fflush(stdin);
+
+        if(iCount == 1)
+        {
+            if(strcmp("exit",Command[0]) == 0)
+            {
+                printf("Thank you for using Marvellous CVFS\n");
+                printf("Deallocating all the allocated resources\n");
+
+                break;
+            }
+            else if(strcmp("ls",Command[0]) == 0)
+            {
+                printf("Inside ls\n");
+            }
+            else if(strcmp("help",Command[0]) == 0)
+            {
+                DisplayHelp();
+            }
+        }// End of if 1
+        else if(iCount == 2)
+        {
+            if(strcmp("man",Command[0]) == 0)
+            {
+                ManPageDisplay(Command[1]);
+            }
+        }// End of else if 2
+        else if(iCount == 3)
+        {
+
+        }// End of else if 3
+        else if(iCount == 4)
+        {
+
+        }// End of else if 4
+        else
+        {
+            printf("Command not found\n");
+            printf("Please refer help option to get more information\n");
+        }// End of else  
+    }// End of while
 
     return 0;
-}
+}// End of main
 

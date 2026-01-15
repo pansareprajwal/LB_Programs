@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////
 //
-//  program name 	:- program534.cpp
+//  program name 	:- program544.cpp
 //  Description 	:- CVFS project (Auxillary Data)
 //  Author       	:- Prajwal Sanjay Pansare
 //  Date 			:- 13/01/2026
@@ -262,7 +262,7 @@ void StartAuxillaryDataInitilisation()
 int main()
 {
     char str[80] = {'\0'};
-    char Command[4][20];
+    char Command[5][20] = {{'\0'}};
     int iCount = 0;
     
     StartAuxillaryDataInitilisation();
@@ -271,17 +271,53 @@ int main()
     printf("------ Marvellous CVFS started successfully ------\n");
     printf("--------------------------------------------------\n");
 
+    //  Infinite Listening Shell
     while(1)
     {
-        fflush(stdin);
+        fflush(stdin);          
 
         strcpy(str,"");
 
-        printf("\nMarvellous CVFS : >");
-        fgets(str,sizeof(str),stdin);       //  scanf("%s",str);
-        
-    }
+        printf("\nMarvellous CVFS : > ");
+        fgets(str,sizeof(str),stdin);
+
+        iCount = sscanf(str,"%s %s %s %s %s",Command[0],Command[1],Command[2],Command[3],Command[4]);
+
+        fflush(stdin);
+
+        if(iCount == 1)
+        {
+            if(strcmp("exit",Command[0]) == 0)
+            {
+                printf("Thank you for using Marvellous CVFS\n");
+                printf("Deallocating all the allocated resources\n");
+
+                break;
+            }
+            else if(strcmp("ls",Command[0]) == 0)
+            {
+                printf("Inside ls\n");
+            }
+        }// End of if 1
+        else if(iCount == 2)
+        {
+            
+        }// End of else if 2
+        else if(iCount == 3)
+        {
+
+        }// End of else if 3
+        else if(iCount == 4)
+        {
+
+        }// End of else if 4
+        else
+        {
+            printf("Command not found\n");
+            printf("Please refer help option to get more information\n");
+        }// End of else  
+    }// End of while
 
     return 0;
-}
+}// End of main
 

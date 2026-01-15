@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////
 //
-//  program name 	:- program534.cpp
+//  program name 	:- program535.cpp
 //  Description 	:- CVFS project (Auxillary Data)
 //  Author       	:- Prajwal Sanjay Pansare
 //  Date 			:- 13/01/2026
@@ -273,12 +273,13 @@ int main()
 
     while(1)
     {
-        fflush(stdin);
+        fflush(stdin);          
 
         strcpy(str,"");
 
         printf("\nMarvellous CVFS : >");
-        fgets(str,sizeof(str),stdin);       //  scanf("%s",str);
+        fgets(str,sizeof(str),stdin);
+
         
     }
 
